@@ -3,8 +3,10 @@ package org.elestya.bedrock.interfaces.menu;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.elestya.bedrock.api.sources.BoutiqueSource;
+import org.elestya.bedrock.api.sources.VendreSource;
 import org.elestya.bedrock.interfaces.FormService;
 import org.elestya.bedrock.interfaces.boutique.BoutiqueMainForm;
+import org.elestya.bedrock.interfaces.vendre.VendreMainForm;
 import org.geysermc.cumulus.form.SimpleForm;
 import org.geysermc.cumulus.util.FormImage;
 
@@ -14,6 +16,7 @@ public class MainMenuForm {
 
     private final FormService service;
     private final BoutiqueSource boutiqueSource;
+    private final VendreSource vendreSource;
 
     private final String BOUTIQUE = "Boutique";
     private final String VENDRE = "Vendre";
@@ -34,9 +37,10 @@ public class MainMenuForm {
     private final String BOOSTS = "Boosts";
     private final String WIKI = "Wiki";
 
-    public MainMenuForm(FormService service, BoutiqueSource boutiqueSource){
+    public MainMenuForm(FormService service, BoutiqueSource boutiqueSource, VendreSource vendreSource){
         this.service = Objects.requireNonNull(service);
         this.boutiqueSource = Objects.requireNonNull(boutiqueSource);
+        this.vendreSource = Objects.requireNonNull(vendreSource);
     }
 
     public void open(Player player) {
@@ -73,6 +77,7 @@ public class MainMenuForm {
                     switch (title){
 
                         case BOUTIQUE -> new BoutiqueMainForm(service, boutiqueSource).open(player);
+                        case VENDRE -> new VendreMainForm(service, vendreSource).open(player);
 
                         default -> {
                         }

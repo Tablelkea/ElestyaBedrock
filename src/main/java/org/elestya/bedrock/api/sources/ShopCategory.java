@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public enum ShopCategory {
 
-    BLOCK("Blocs", Material.BRICK),
+    BLOCK("Blocs", Material.BRICKS),
     FOOD("Nourritures", Material.COOKED_BEEF),
     DROPS("Butins", Material.BONE),
     PLANTS("Plantes", Material.OAK_SAPLING),

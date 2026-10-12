@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface BoutiqueSource {
 
-    List<BoutiqueItem> getShopItems();
+    List<BoutiqueItem> getBoutiqueItems();
 
     Optional<BoutiqueItem> findItemByName(String name);
 

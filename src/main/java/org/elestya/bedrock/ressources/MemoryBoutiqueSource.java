@@ -29,7 +29,7 @@ public class MemoryBoutiqueSource implements BoutiqueSource {
     }
 
     @Override
-    public List<BoutiqueItem> getShopItems() {
+    public List<BoutiqueItem> getBoutiqueItems() {
         return List.copyOf(boutiqueItems.values());
     }
 

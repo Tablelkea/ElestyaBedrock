@@ -34,7 +34,14 @@ public class BoutiqueConfirmForm {
                     new BoutiqueItemForm(formService, boutiqueSource).open(player, item);
                 }))
                 .validResultHandler(formService.sync(player, response -> {
+
+                    if(response.clickedButtonText().equalsIgnoreCase("§c§lAnnuler")){
+                        new BoutiqueItemForm(formService, boutiqueSource).open(player, item);
+                        return;
+                    }
+
                     openResultForm(player, item, quantity);
+                    boutiqueSource.buy(player, item, quantity);
                 }))
                 .build();
 
