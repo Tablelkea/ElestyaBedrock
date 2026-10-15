@@ -12,6 +12,11 @@ commands:
     description: open default menu
   color:
     description: show color render
+  metierdebug:
+    description: modify a profession level for debugging
+    usage: /metierdebug <metier> <niveau>
+  update:
+    description: afficher les dernières modifications du plugin
 
 depend:
   - Geyser-Spigot

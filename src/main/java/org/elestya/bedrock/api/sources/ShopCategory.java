@@ -10,21 +10,22 @@ public enum ShopCategory {
     FOOD("Nourritures", Material.COOKED_BEEF),
     DROPS("Butins", Material.BONE),
     PLANTS("Plantes", Material.OAK_SAPLING),
-    ORE("Minerais", Material.DIAMOND);
+    ORE("Minerais", Material.DIAMOND),
+    FISHING("Prises de pêche", Material.COD);
 
-    private final String name;
+    private final String displayName;
     private final Material icon;
 
-    ShopCategory(String name, Material icon){
-        this.name = Objects.requireNonNull(name);
+    ShopCategory(String displayName, Material icon){
+        this.displayName = Objects.requireNonNull(displayName);
         this.icon = Objects.requireNonNull(icon);
     }
 
-    public Material icon() {
+    public Material getIcon() {
         return icon;
     }
 
-    public String text() {
-        return name;
+    public String getDisplayName() {
+        return displayName;
     }
 }
