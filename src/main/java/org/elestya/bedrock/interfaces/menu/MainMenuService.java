@@ -1,15 +1,8 @@
 package org.elestya.bedrock.interfaces.menu;
 
 import org.bukkit.entity.Player;
-import org.elestya.bedrock.api.sources.Metier;
-import org.elestya.bedrock.api.sources.MetierSource;
-import org.elestya.bedrock.api.sources.DailyQuestSource;
-import org.elestya.bedrock.api.sources.DailyRewardSource;
-import org.elestya.bedrock.api.sources.WorldSource;
-import org.elestya.bedrock.api.sources.ShopSource;
-import org.elestya.bedrock.api.sources.SellSource;
+import org.elestya.bedrock.api.sources.*;
 import org.elestya.bedrock.api.sources.guild.GuildSource;
-import org.elestya.bedrock.api.sources.ShopCategory;
 import org.elestya.bedrock.interfaces.FormService;
 import org.elestya.bedrock.interfaces.boutique.ShopMainForm;
 import org.elestya.bedrock.interfaces.metier.MetierForm;
@@ -28,6 +21,12 @@ import org.elestya.bedrock.ressources.InMemoryShopSource;
 import org.elestya.bedrock.ressources.InMemorySellSource;
 import org.elestya.bedrock.ressources.InMemoryGuildSource;
 import org.elestya.bedrock.interfaces.guilde.GuildMenuService;
+import org.elestya.bedrock.ressources.InMemoryAuctionSource;
+import org.elestya.bedrock.ressources.InMemoryBoostSource;
+import org.elestya.bedrock.ressources.InMemoryLotterySource;
+import org.elestya.bedrock.ressources.InMemoryPassSource;
+import org.elestya.bedrock.ressources.InMemoryProgressionSource;
+import org.elestya.bedrock.ressources.InMemoryGemShopSource;
 
 import java.util.Objects;
 import java.util.function.Consumer;
@@ -41,6 +40,12 @@ public class MainMenuService {
     private DailyQuestSource questSource;
     private DailyRewardSource rewardSource;
     private WorldSource worldSource;
+    private GemShopSource gemSource = new InMemoryGemShopSource();
+    private AuctionSource auctionSource = new InMemoryAuctionSource();
+    private PassSource passSource = new InMemoryPassSource();
+    private ProgressionSource progressionSource = new InMemoryProgressionSource();
+    private BoostSource boostSource = new InMemoryBoostSource();
+    private LotterySource lotterySource = new InMemoryLotterySource();
     private GuildSource guildSource;
     private Consumer<Player> guildReserveOpener = player ->
             player.sendMessage("§cL'ouverture de la réserve doit être reliée par Elestya Core.");
@@ -118,6 +123,30 @@ public class MainMenuService {
         this.guildSource = Objects.requireNonNull(guildSource);
     }
 
+    public void setGemShopSource(GemShopSource source) {
+        gemSource = Objects.requireNonNull(source);
+    }
+
+    public void setAuctionSource(AuctionSource source) {
+        auctionSource = Objects.requireNonNull(source);
+    }
+
+    public void setPassSource(PassSource source) {
+        passSource = Objects.requireNonNull(source);
+    }
+
+    public void setProgressionSource(ProgressionSource source) {
+        progressionSource = Objects.requireNonNull(source);
+    }
+
+    public void setBoostSource(BoostSource source) {
+        boostSource = Objects.requireNonNull(source);
+    }
+
+    public void setLotterySource(LotterySource source) {
+        lotterySource = Objects.requireNonNull(source);
+    }
+
     public void setGuildReserveOpener(Consumer<Player> reserveOpener) {
         this.guildReserveOpener = Objects.requireNonNull(reserveOpener);
     }
@@ -135,7 +164,8 @@ public class MainMenuService {
         Objects.requireNonNull(player);
 
         new MainMenuForm(service, shopSource, sellSource, metierSource,
-                questSource, rewardSource, worldSource, guildSource, guildReserveOpener).open(player);
+                questSource, rewardSource, worldSource, gemSource, guildSource, guildReserveOpener,
+                auctionSource, passSource, progressionSource, boostSource, lotterySource).open(player);
 
     }
 
